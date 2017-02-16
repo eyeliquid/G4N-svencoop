@@ -1,0 +1,18 @@
+# escape=`
+
+FROM lacledeslan/gamesvr-srcds-svencoop:linux
+
+MAINTAINER Laclede's LAN <contact@lacledeslan.com>
+
+ENV IMAGE="gamesvr-srcds-svencoop-freeplay:linux"
+
+USER root
+
+COPY ./dist /app/bin/
+
+# CLEAN UP
+RUN usermod -l SVENCOOP.Freeplay SVENCOOP
+
+USER SVENCOOP.Freeplay
+	
+WORKDIR /app/bin/

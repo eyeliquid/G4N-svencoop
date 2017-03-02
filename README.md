@@ -6,3 +6,8 @@ Docker image for freeplay [Sven Co-op](http://www.svencoop.com/) servers.
 ```
 docker pull lacledeslan/gamesvr-srcds-svencoop-freeplay:linux
 ```
+
+# Build Triggers
+Automated builds of this image can be trigger by the following sources:
+* [Commits on GitHub](https://github.com/LacledesLAN/gamesvr-srcds-svencoop-freeplay)
+* [Upstream build of lacledeslan/gamesvr-srcds-svencoop](https://hub.docker.com/r/lacledeslan/gamesvr-srcds-svencoop/)

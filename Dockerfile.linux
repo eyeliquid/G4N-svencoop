@@ -16,17 +16,18 @@ LABEL maintainer="Laclede's LAN <contact @lacledeslan.com>" `
       org.label-schema.description="LL Half-Life 2 Deathmatch Dedicated Freeplay Server" `
       org.label-schema.vcs-url="https://github.com/LacledesLAN/gamesvr-hl2dm"
 
-COPY ./dist /app/svencoop/
+COPY --chown=SvenCoOp:root ./dist /app/svencoop/
 
-COPY ./ll-tests/*.sh /app/ll-tests
+COPY --chown=SvenCoOp:root ./ll-tests/*.sh /app/ll-tests
 
-RUN chmod +rx /app/ll-tests/*.sh &&`
-    chmod +rwx /app/ll-tests &&`
-    chown SvenCoOp:root -R /app/ll-tests;
-
-# UPDATE USERNAME
-RUN usermod -l SvenCoOpFreeplay SvenCoOp
+# UPDATE USERNAME & ensure permissions
+RUN usermod -l SvenCoOpFreeplay SvenCoOp &&`
+    chmod +x /app/ll-tests/*.sh;
 
 USER SvenCoOpFreeplay
 
-WORKDIR /app/
+WORKDIR /app
+
+CMD ["/bin/bash"]
+
+ONBUILD USER root

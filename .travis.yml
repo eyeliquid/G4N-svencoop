@@ -23,7 +23,7 @@ notifications:
     secure: X2DmGO5wivNCXAS1j8O8We9yVMa9/Gz3L4qISNpuf69jF2Dbay6VjBFVnx2AILLMUjC50wE0qenL5ohiEXC1IC+sh52s7FKDICTjnUZlO8RgbQD+3O68m8XMdKH2pNnvlMahblmZHby2ZEhDF18WAgS0H/xAbYqycHeApnf2UeNJXnzGpyL+z+x/PlyEV801yGg+sDnW4Wwn3oC8ugE8y3+mSQekbfi0VOsf0Ur5qFfo1KHxYHQ6X5zoMdDbYMZSWkWkd2Ka4vF95iRo3x/f0yf93TxJjijkov3jLkMp6UuxVC6SDnUXiEcQmZ29hbFQ8XbYoMpNDlvxxrT4TKPDlj2GfdB1sRUVsW5urBatrumyM1a+mREouCwzSi7mOsJhPd6oR7oA2o5vkyGM9NVKSOTnhswnKQ90ahBoWw5OkwZYnQBh4mfDZZgZiqXEekefsT3j9O9sO1pkO3pNSpk07aU+kbraaXTNPyn9RSxBNhJbPxjVx/V2N8Ub+IG4zpJtQdQAjmCOxSNnMqTwrILphHbUypORLz4MGQw9i7u6Yre2Bw914xYNiXaXkMaPgAsVpSO2GhrcMnim7jyYdpaO08ZEeromlD/9mPPpd9EMYMJHJJeldrhju1qTo24f0NVywVe+ITKJGcxcqDPdC9oIVYeOiuXqsT/X8tps4uC0bxY=
 
 before_deploy:
-  - docker login -u "$DOCKERHUB_USER" -p "$DOCKERHUB_PASS";
+  - echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USER" --password-stdin;
 deploy:
   provider: script
   script: docker push lacledeslan/gamesvr-svencoop-freeplay

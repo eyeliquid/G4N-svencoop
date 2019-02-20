@@ -1,3 +1,5 @@
+* text=auto eol=lf
+
 /.dockerignore eol=lf
 /Dockerfile.linux eol=lf
 /Dockerfile.windows eol=crlf

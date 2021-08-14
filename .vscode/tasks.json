@@ -4,11 +4,10 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Build",
+            "label": "Build Linux Image",
             "type": "shell",
-            "command": "docker pull lacledeslan/gamesvr-svencoop; docker pull debian:jessie-slim; docker build -f Dockerfile.linux . -t lltest/gamesvr-svencoop-freeplay --no-cache --build-arg BUILDNODE=$env:computername;",
+            "command": "docker pull lacledeslan/gamesvr-svencoop; docker pull debian:jessie-slim; docker build -f linux.Dockerfile . -t lltest/gamesvr-svencoop-freeplay --no-cache --build-arg BUILDNODE=$env:computername;",
             "group": "build",
-            "identifier": "build-image",
             "problemMatcher": [],
             "promptOnClose": true
         },
@@ -16,7 +15,7 @@
             "label": "Build & Execute Self Tests",
             "type": "shell",
             "command": "docker run -it --rm lltest/gamesvr-svencoop-freeplay ./ll-tests/gamesvr-svencoop-freeplay.sh;",
-            "dependsOn": "build-image",
+            "dependsOn": "Build Linux Image",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -28,7 +27,7 @@
             "label": "Build & Run Interactive Server",
             "type": "shell",
             "command": "docker run -it --net=host lltest/gamesvr-svencoop-freeplay ./svends_run -num_edicts 3072 +sv_lan 1",
-            "dependsOn": "build-image",
+            "dependsOn": "Build Linux Image",
             "group": "build",
             "problemMatcher": [],
             "promptOnClose": true
@@ -37,7 +36,7 @@
             "label": "Build & Shell In",
             "type": "shell",
             "command": "docker run -it --net=host --rm lltest/gamesvr-svencoop-freeplay;",
-            "dependsOn": "build-image",
+            "dependsOn": "Build Linux Image",
             "group": "build",
             "problemMatcher": [],
             "promptOnClose": true
